@@ -1,0 +1,28 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+table {
+  margin: auto;
+  width: 70%;
+}
+
+th {
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+td {
+  padding: 2px;
+}
+
+h1, h4 {
+  text-align: center;
+}
+
+h4 {
+  width: 50%;
+  margin: auto;
+  margin-bottom: 2rem;
+}
