@@ -25,7 +25,9 @@ async function main() {
 
     if (file) {
       const filename = `${title}.html`;
-      const content = await(readFile(join(DATA_DIR, title), { encoding: 'latin1' }));
+      const content = await readFile(join(DATA_DIR, title), {
+        encoding: 'latin1',
+      });
       const afangar = await parse(content);
 
       if (!afangar || afangar.length !== 0 || afangar === null) {
