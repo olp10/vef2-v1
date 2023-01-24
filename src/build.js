@@ -1,9 +1,8 @@
 import { mkdir, writeFile } from 'fs/promises';
-import { direxists, readFile, readFilesFromDir } from '../lib/file.js';
-import path, { join } from 'path';
+import { join } from 'path';
+import { direxists, readFile } from '../lib/file.js';
 import { indexTemplate, statsTemplate } from '../lib/html.js';
 import { parse } from '../lib/parser.js';
-
 
 const DATA_DIR = './data';
 const OUTPUT_DIR = './dist';
@@ -26,7 +25,8 @@ async function main() {
 
     if (file) {
       const filename = `${title}.html`;
-      const afangar = await parse(join(DATA_DIR, title));
+      const content = await(readFile(join(DATA_DIR, title), { encoding: 'latin1' }));
+      const afangar = await parse(content);
 
       if (!afangar || afangar.length !== 0 || afangar === null) {
         const result = {
@@ -42,7 +42,7 @@ async function main() {
           results.push(result);
           const filepath = join(OUTPUT_DIR, filename);
           const template = statsTemplate(name, result);
-          await writeFile(filepath, template, { flag: 'w+'});
+          await writeFile(filepath, template, { flag: 'w+' });
         }
       }
     }
